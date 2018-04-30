@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Account Management App</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+   
+    .navbar {
+      margin-bottom: 10px;
+      border-radius: 5px 15px 15px 5px;
+    }
+    
+    .row.content {height: Auto}
+    
+    
+    .centerbox {
+      
+      background-color: #f1f1f1;
+      height: Auto;
+      border-radius: 10px 10px;
+     
+      }
+     
+      .row.content {height:auto;} 
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+    <a class="navbar-brand" href="Homepage.html">Account Application</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="Homepage.html">Homepage</a></li>
+        <li class="active"><a href="AddAccounts.html">Add Account</a></li>
+        <li><a href="GetAccounts.html">View All Accounts</a></li>
+        <li><a href="UpdateAccounts.html">Update Account</a></li>
+        <li><a href="DeleteAccounts.html">Delete Account</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+          <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+  
+<div class="container-fluid text-center">    
+  <div class="row content">
+    
+    <div class="col-sm-12 centerbox text-left"> 
+       <h2>Add Account</h2>
+ <form>
+    <div class="form-group">
+      <label for="First">First Name:</label>
+      <input type="text" class="form-control" id="First">
+    </div>
+    <div class="form-group">
+      <label for="Last">Surname:</label>
+      <input type="text" class="form-control" id="Last">
+    </div>
+     <div class="form-group">
+      <label for="Acc">Account Number:</label>
+      <input type="number" class="form-control" id="Acc">
+    </div>
+     <input type="Submit" onclick="addAccount()" class="btn btn-primary">
+     
+     <script> 
+    
+    function addAccount() {
+        
+        var firstName = document.getElementById("First").value;
+        var surName = document.getElementById("Last").value;
+        var AccNo = document.getElementById("Acc").value;
+
+        var requestURL = 'http://localhost:8080/accountapp/api/account/json';
+
+        var add = new XMLHttpRequest();
+        
+        add.open('POST', requestURL);
+        
+        add.setRequestHeader("Content-type", "application/json");
+        var create = JSON.stringify({"firstName": "" + firstName + "", "surName": "" + surName + "", "accountNumber": "" + AccNo + ""});
+        
+        add.send(create);
+        }  
+    </script>
+   </form>
+  </div>    
+ </div>
+</div>
+
+</body>
+</html>
